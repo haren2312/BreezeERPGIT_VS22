@@ -710,3 +710,4 @@ C:\Projects\BreezeERPGIT_VS22\ERP.UI\obj\Debug\ERP.pdb
 E:\GIT22\BreezeERPGIT_VS22\ERP.UI\bin\System.Web.Http.dll
 D:\GIT\GitHub\BreezeERPGIT_VS22\ERP.UI\bin\stdole.dll
 D:\GIT\GitHub\BreezeERPGIT_VS22\ERP.UI\obj\Debug\ERP.csproj.Up2Date
+D:\GIT\GitHub\BreezeERPGIT_VS22\ERP.UI\bin\System.Web.WebPages.Deployment.dll
