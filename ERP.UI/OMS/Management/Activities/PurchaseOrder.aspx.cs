@@ -4202,10 +4202,11 @@ namespace ERP.OMS.Management.Activities
                             string ProductID = Convert.ToString(dr["ProductID"]);
                             decimal ProductQuantity = Convert.ToDecimal(dr["Quantity"]);
                             string Status = Convert.ToString(dr["Status"]);
+                            string TagDocDetailsId = Convert.ToString(dr["TagDocDetailsId"]);
                             DataTable dtq = new DataTable();
                             if (rdl_Salesquotation.SelectedValue == "Indent")
                             {
-                                dtq = oDBEngine.GetDataTable("select isnull(BalanceQty,0)  TotQty from tbl_trans_RequisitionBalanceMapForPurchaseOrder where  RequisitionId='" + Convert.ToInt32(dr["Indent_No"]) + "' and ProductId='" + ProductID + "'");
+                                dtq = oDBEngine.GetDataTable("select isnull(BalanceQty,0)  TotQty from tbl_trans_RequisitionBalanceMapForPurchaseOrder where  RequisitionId='" + Convert.ToInt32(dr["Indent_No"]) + "' and ProductId='" + ProductID + "' and Requisition_Details_ID='" + TagDocDetailsId + "'");
                                 if (dtq.Rows.Count > 0 && Status != "D")
                                 {
                                     if (ProductID != "")
