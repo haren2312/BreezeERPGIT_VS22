@@ -280,6 +280,9 @@
     <li style="font:50px"><a style="font-size: small;"" href="/Reports/GridReports/BatchExpiryAlert.aspx">Batch Expiry Alert</a></li>
     <li style="font:50px"><a style="font-size: small;"" href="/Reports/GridReports/BSStatement.aspx">Balance Sheet Statement</a></li>
     <li style="font:50px"><a style="font-size: small;"" href="/Reports/GridReports/TradingandPLStatement.aspx">Trading and PL Statement</a></li>
+    <%-- Rev 0027782--%>
+    <li style="font:50px"><a style="font-size: small;"" href="/Reports/REPXReports/RepxReportMain.aspx?reportname=DELIVERYCHALLAN">SRV Delivery Challan</a></li>
+    <%-- End of Rev 0027782--%>
 </ul>
 
 
