@@ -7,7 +7,8 @@
 //Rev 4.0      Priti      V2.0.43   16-01-2024     Mantis : 0027183 After saving purchase order by availing the "Copy" features document number saving as "Auto"
 //Rev 5.0      Priti      V2.0.43   22-01-2024     Mantis : 0027198 Stop editing while purchase order partially used in another modules.
 //Rev 6.0      Priti      V2.0.43   01-03-2024     Mantis : 0027287 While adding new product in edit mode getting an error in Purchase Order "Value was either too large or too small for an Int16.".
-//Rev 7.0      Priti      V2.0.43   17-05-2024     	0027408: After Removing any Item from the Purchase Order while Modify any document getting a msg -"Check GST Calculated for Item.."
+//Rev 7.0      Priti      V2.0.43   17-05-2024     0027408: After Removing any Item from the Purchase Order while Modify any document getting a msg -"Check GST Calculated for Item.."
+//Rev 8.0      Priti      V2.0.45   29-10-2024     0027781: Issue while doing purchase order tagging the indent.
 //====================================================End Revision History=====================================================================
 using System;
 using System.Configuration;
@@ -4151,10 +4152,16 @@ namespace ERP.OMS.Management.Activities
                             string ProductID = Convert.ToString(dr["ProductID"]);
                             decimal ProductQuantity = Convert.ToDecimal(dr["Quantity"]);
                             string Status = Convert.ToString(dr["Status"]);
+                            //REV 8.0
+                            string TagDocDetailsId = Convert.ToString(dr["TagDocDetailsId"]);
+                            //REV 8.0 END
                             DataTable dtq = new DataTable();
                             if (rdl_Salesquotation.SelectedValue == "Indent")
                             {
-                                dtq = oDBEngine.GetDataTable("select (ISNULL(TotalQty,0)+isnull(BalanceQty,0)) TotQty from tbl_trans_RequisitionBalanceMapForPurchaseOrder where  RequisitionId='" + Convert.ToInt32(dr["Indent_No"]) + "' and ProductId='" + ProductID + "'");
+                                //dtq = oDBEngine.GetDataTable("select (ISNULL(TotalQty,0)+isnull(BalanceQty,0)) TotQty from tbl_trans_RequisitionBalanceMapForPurchaseOrder where  RequisitionId='" + Convert.ToInt32(dr["Indent_No"]) + "' and ProductId='" + ProductID + "' ");
+                                //REV 8.0
+                                dtq = oDBEngine.GetDataTable("select (ISNULL(TotalQty,0)+isnull(BalanceQty,0)) TotQty from tbl_trans_RequisitionBalanceMapForPurchaseOrder where  RequisitionId='" + Convert.ToInt32(dr["Indent_No"]) + "' and ProductId='" + ProductID + "' and Requisition_Details_ID='" + TagDocDetailsId + "'");
+                                //REV 8.0 END
                                 if (Status != "D" && dtq.Rows.Count > 0)
                                 {
                                     if (ProductQuantity > Convert.ToDecimal(dtq.Rows[0]["TotQty"]))
@@ -4202,11 +4209,16 @@ namespace ERP.OMS.Management.Activities
                             string ProductID = Convert.ToString(dr["ProductID"]);
                             decimal ProductQuantity = Convert.ToDecimal(dr["Quantity"]);
                             string Status = Convert.ToString(dr["Status"]);
+                            //REV 8.0
                             string TagDocDetailsId = Convert.ToString(dr["TagDocDetailsId"]);
+                            //REV 8.0 END
                             DataTable dtq = new DataTable();
                             if (rdl_Salesquotation.SelectedValue == "Indent")
                             {
+                                //REV 8.0 
+                                //dtq = oDBEngine.GetDataTable("select isnull(BalanceQty,0)  TotQty from tbl_trans_RequisitionBalanceMapForPurchaseOrder where  RequisitionId='" + Convert.ToInt32(dr["Indent_No"]) + "' and ProductId='" + ProductID + "' ");
                                 dtq = oDBEngine.GetDataTable("select isnull(BalanceQty,0)  TotQty from tbl_trans_RequisitionBalanceMapForPurchaseOrder where  RequisitionId='" + Convert.ToInt32(dr["Indent_No"]) + "' and ProductId='" + ProductID + "' and Requisition_Details_ID='" + TagDocDetailsId + "'");
+                                //REV 8.0 END
                                 if (dtq.Rows.Count > 0 && Status != "D")
                                 {
                                     if (ProductID != "")
