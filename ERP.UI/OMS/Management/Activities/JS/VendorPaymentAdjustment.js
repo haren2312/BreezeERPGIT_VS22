@@ -1,7 +1,9 @@
 ﻿//====================================================Revision History =========================================================================
 //1.0   v2.0.39	    Priti	    27-06-2023	    0026412: Auto calculation of Adjusted amount during Adjustment of Document Entries-Advance with Invoice for Vendor
-//2.0   V2.0.40     Sanchita    25-10-2023      26915: Party Invoice Date required in the Document Search window of the Invoice for the module 
+//2.0   V2.0.40     Sanchita    25-10-2023      26915: Party Invoice Date required in the Document Search window of the Invoice for the module
 //                                              Adjustment of Documents - Advance With Invoice
+//3.0   V2.0.45     Priti       25-11-2024      0027795: While Saving Document in Advance with Invoice Adjustment entry screen "Mismatche Deducted"
+
 //====================================================End Revision History=====================================================================
 /*****************
 Global variable*/
@@ -1028,7 +1030,10 @@ function ValidateEntry() {
         jAlert("Adjusted Amount must be greater than zero.", "Alert", function () { cAdjAmt.Focus(); });
         return false;
     }
-    if (parseFloat(cAdjAmt.GetValue()) != GetTotalAdjustedAmount()) {
+    //Rev 3.0
+    if (parseFloat(cAdjAmt.GetValue()) != GetTotalAdjustedAmount().toFixed(2)) {
+    /*if (parseFloat(cAdjAmt.GetValue()) != GetTotalAdjustedAmount()) {*/
+    //Rev 3.0 End
         jAlert("Mismatch detected in Adjusted Amount and Adjustment Amount.", "Alert", function () { cAdjAmt.Focus(); });
         return false;
     }
