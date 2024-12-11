@@ -5,6 +5,7 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
 3.0                26-03-2024        V2.0.43           Priti               0027334: Mfg Date & Exp date should load automatically if the batch details exists for the product while making Purchase GRN.
                                                                            Add function FetchBatchWiseMfgDateExpiryDate,ValidfromCheck
 4.0                23-04-2024        V2.0.43           Priti               0027379: Alternate Qty is not calculating properly in the Purchase GRN.
+5.0                11-12-2024        V2.0.45           Priti               0027837: If we scroll the date filed it will changed the date. add AllowMouseWheel="false"  on txtMfgDate & txtExprieyDate
 ====================================================== Revision History =============================================--%>
 
 <%@ Page Title="Purchase Challan" Language="C#" MasterPageFile="~/OMS/MasterPage/ERP.Master" AutoEventWireup="true" CodeBehind="PurchaseChallan.aspx.cs" Inherits="ERP.OMS.Management.Activities.PurchaseChallan" EnableEventValidation="false" %>
@@ -1895,7 +1896,7 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
                                     <div class="Left_Content" style="">
                                         <%--<input type="text" id="txtMfgDate" placeholder="Mfg Date" />--%>
                                         <dxe:ASPxDateEdit ID="txtMfgDate" runat="server" Width="100%" EditFormat="custom" UseMaskBehavior="True"
-                                            ClientInstanceName="ctxtMfgDate" AllowNull="true" DisplayFormatString="dd-MM-yyyy" EditFormatString="dd-MM-yyyy">
+                                            ClientInstanceName="ctxtMfgDate" AllowNull="true" DisplayFormatString="dd-MM-yyyy" EditFormatString="dd-MM-yyyy" AllowMouseWheel="false">
                                             <ButtonStyle Width="13px">
                                             </ButtonStyle>
                                             <ClientSideEvents DateChanged="ValidfromCheck" />
@@ -1910,7 +1911,7 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
                                     <div class="Left_Content" style="">
                                         <%-- <input type="text" id="txtExprieyDate" placeholder="Expiry Date" />--%>
                                         <dxe:ASPxDateEdit ID="txtExprieyDate" runat="server" Width="100%" EditFormat="custom" UseMaskBehavior="True"
-                                            ClientInstanceName="ctxtExprieyDate" AllowNull="true" DisplayFormatString="dd-MM-yyyy" EditFormatString="dd-MM-yyyy">
+                                            ClientInstanceName="ctxtExprieyDate" AllowNull="true" DisplayFormatString="dd-MM-yyyy" EditFormatString="dd-MM-yyyy" AllowMouseWheel="false">
                                             <ButtonStyle Width="13px">
                                             </ButtonStyle>                                           
                                             <ClientSideEvents GotFocus="function(s,e){ctxtExprieyDate.ShowDropDown();}" />
